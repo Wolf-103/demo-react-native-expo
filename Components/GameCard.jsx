@@ -1,13 +1,22 @@
 import React, {useEffect, useRef} from "react";
 import {StyleSheet, Text, View, Image, Animated} from "react-native";
+import {Score} from "./Score";
 
 export function GameCard({game}) {
     return (
-        <View className="bg-gray-10/10" key={game.slug}>
+        <View
+            className="flex-row bg-slate-500/10 p-4 rounded-xl gap-4 mb-2"
+            key={game.slug}>
             <Image source={{uri: game.image}} style={styles.image} />
-            <Text style={styles.text}>{game.title}</Text>
-            <Text style={styles.score}>{game.score}</Text>
-            <Text style={styles.description}>{game.description}</Text>
+            <View>
+                <Text className="mb-2" style={styles.text}>
+                    {game.title}
+                </Text>
+                <Score score={game.score} maxscore={100}></Score>
+                <Text className="flex-shrink-0" style={styles.description}>
+                    {game.description.slice(0, 100)}
+                </Text>
+            </View>
         </View>
     );
 }
@@ -54,6 +63,6 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: "bold",
         color: "green",
-        marginTop: 10,
+        marginBottom: 10,
     },
 });

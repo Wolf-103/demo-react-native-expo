@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {View, FlatList, ActivityIndicator} from "react-native";
+import {Link} from "expo-router";
 
 import {useSafeAreaInsets} from "react-native-safe-area-context";
 import {getLatestGames} from "../lib/metacritic";
@@ -30,13 +31,18 @@ export function Main() {
                     }}
                 />
             </View>
+            <Link href="/about" className="text-blue-500 text-xl">
+                Ir a about
+            </Link>
             {games.length === 0 ? (
                 <ActivityIndicator color={"#fff"} size={"large"} />
             ) : (
                 <FlatList
                     data={games}
                     keyExtractor={(game) => game.slug}
-                    renderItem={({item, index}) => <AnimatedGameCard game={item} index={index} />}
+                    renderItem={({item, index}) => (
+                        <AnimatedGameCard game={item} index={index} />
+                    )}
                 />
             )}
         </View>
