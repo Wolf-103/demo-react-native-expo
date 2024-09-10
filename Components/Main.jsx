@@ -8,6 +8,9 @@ import {getLatestGames} from "../lib/metacritic";
 import {AnimatedGameCard} from "./GameCard";
 import {Logo} from "./Logo";
 
+import {CircleInfoIcon} from "./Icons";
+import StyledPressable from "./StyledPressable";
+
 export function Main() {
     const [games, setGames] = useState([]);
     const insets = useSafeAreaInsets();
@@ -31,8 +34,15 @@ export function Main() {
                     }}
                 />
             </View>
-            <Link href="/about" className="text-blue-500 text-xl">
-                Ir a about
+            <Link asChild href="/about">
+                <StyledPressable className={`active:opacity-20 p-2`}>
+                    <CircleInfoIcon />
+                </StyledPressable>
+                {/* <Pressable className="p-2">
+                    {({pressed}) => (
+                        <CircleInfoIcon style={{opacity: pressed ? 0.5 : 1}} />
+                    )}
+                </Pressable> */}
             </Link>
             {games.length === 0 ? (
                 <ActivityIndicator color={"#fff"} size={"large"} />
