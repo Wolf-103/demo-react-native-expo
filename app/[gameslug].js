@@ -1,9 +1,10 @@
-import {ActivityIndicator, ScrollView, Text, View} from "react-native";
+import {ActivityIndicator, Image, ScrollView, Text, View} from "react-native";
 import {Stack} from "expo-router";
 import {useLocalSearchParams} from "expo-router";
 import ScreenLayout from "../Components/ScreenLayout";
 import {useEffect, useState} from "react";
 import {getGameDetails} from "../lib/metacritic";
+import {Score} from "../Components/Score";
 
 export default function Detail() {
     const {gameslug} = useLocalSearchParams();
@@ -21,7 +22,7 @@ export default function Detail() {
                     headerStyle: {backgroundColor: "yellow"},
                     headerTintColor: "black",
                     headerLeft: () => {},
-                    headerTitle: "Wolf",
+                    headerTitle: "Detalle del Juego",
                     headerRight: () => {},
                 }}
             />
@@ -30,9 +31,20 @@ export default function Detail() {
                     <ActivityIndicator color={"#fff"} size={"large"} />
                 ) : (
                     <ScrollView>
-                        <Text className="text-white font-bold mb-8 text-2xl">
-                            Detalle del Juego {gameInfo.title}
-                        </Text>
+                        <View className="justify-center items-center text-center">
+                            <Image
+                                className="mb-4 rounded"
+                                source={{uri: gameInfo.img}}
+                                style={{width: 214, height: 294}}
+                            />
+                            <Score score={gameInfo.score} maxscore={100}></Score>
+                            <Text className="text-white font-bold mb-8 text-2xl">
+                                {gameInfo.title}
+                            </Text>
+                            <Text className="text-white text-justify font-bold mb-8 text-xl">
+                                Detalle del Juego {gameInfo.description}
+                            </Text>
+                        </View>
                     </ScrollView>
                 )}
             </View>

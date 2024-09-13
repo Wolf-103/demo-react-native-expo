@@ -1,8 +1,8 @@
 import {Link} from "expo-router";
 import {ScrollView, Text} from "react-native";
-import {HomeIcon} from "../Components/Icons";
-import StyledPressable from "../Components/StyledPressable";
-import ScreenLayout from "../Components/ScreenLayout";
+import {HomeIcon} from "../../Components/Icons";
+import StyledPressable from "../../Components/StyledPressable";
+import ScreenLayout from "../../Components/ScreenLayout";
 
 export default function about() {
     return (
